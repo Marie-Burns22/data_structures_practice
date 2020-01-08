@@ -1,6 +1,6 @@
 // variables for testing
 let testStringA = 'cbcddc'
-let testStringB = 'ddccb1'
+let testStringB = 'ddccbc'
 
 
 // Checks if all characters in a string are unique
@@ -25,7 +25,6 @@ function isPermutation(strA, strB) {
     for (let i = 0; i < strA.length; i ++) {
         let val = strA[i];
         (aChars[val]) ? aChars[val] ++ : aChars[val] = 1;
-        console.log(val, aChars[val]);
     }
     for (let i = 0; i < strB.length; i ++) {
         let val = strB[i];
