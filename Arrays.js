@@ -37,3 +37,32 @@ function isPermutation(strA, strB) {
 }
 
 // console.log(isPermutation(testStringB, testStringA))
+
+// Capitalize first letter of each string in an array. 
+
+let capTestA = []
+let capTestB = ['a']
+let capTestC = ['javascript', 'apple', 'bat']
+
+// Recursion method
+function capitalize(array) {
+    let capitalizedArray = [];
+    if (array.length === 0) {
+        return capitalizedArray;
+    } else {
+        let word = array[0];
+        // console.log("word:", word)
+        let first = word.slice(0, 1).toUpperCase();
+        // console.log("first", first)
+        let capitalizedWord = first + word.slice(1);
+        // console.log("capWord", capitalizedWord)
+        capitalizedArray.push(capitalizedWord);
+    }
+    capitalizedArray = capitalizedArray.concat(capitalize(array.slice(1)));
+    return capitalizedArray;
+}
+
+// console.log("Test A", capitalize(capTestA));  // undefined
+// console.log("Test B", capitalize(capTestB));  // ['A']
+// console.log("Test C",capitalize(capTestC));  // ['Javascript', 'Apple', 'Bat']
+
