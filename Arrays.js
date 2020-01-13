@@ -1,8 +1,5 @@
-// variables for testing
-let testStringA = 'cbcddc'
-let testStringB = 'ddccbc'
-
-
+//All these functions are practice for working with arrays.
+//////////////////////////////////////////////////////////////////
 // Checks if all characters in a string are unique
 function isUnique(string) {
     if (string.length > 128) return false; // if using ASCII which only has 128 characters
@@ -14,10 +11,10 @@ function isUnique(string) {
     };
     return true;
 };
+// console.log(isUnique('cbcddc'));
+// console.log(isUnique('ddccbc'));
 
-// console.log(isUnique(testStringA));
-// console.log(isUnique(testStringB));
-
+/////////////////////////////////////////////////////////////////
 function isPermutation(strA, strB) {
     if(strA.length !== strB.length) return false;
     let aChars = {};
@@ -35,15 +32,10 @@ function isPermutation(strA, strB) {
     }
     return true;
 }
-
 // console.log(isPermutation(testStringB, testStringA))
 
+////////////////////////////////////////////////////////////////////
 // Capitalize first letter of each string in an array. 
-
-let capTestA = []
-let capTestB = ['a']
-let capTestC = ['javascript', 'apple', 'bat']
-
 // Recursion method
 function capitalize(array) {
     let capitalizedArray = [];
@@ -62,10 +54,11 @@ function capitalize(array) {
     return capitalizedArray;
 }
 
-// console.log("Test A", capitalize(capTestA));  // undefined
-// console.log("Test B", capitalize(capTestB));  // ['A']
-// console.log("Test C",capitalize(capTestC));  // ['Javascript', 'Apple', 'Bat']
+// console.log("Test empty array", capitalize([]));  // undefined
+// console.log("Test single element", capitalize(['a']));  // ['A']
+// console.log("Test array with 3 words", capitalize(['javascript', 'apple', 'bat']));  // ['Javascript', 'Apple', 'Bat']
 
+/////////////////////////////////////////////////////////////////
 function isPalindrome(string) {
     if(string.length === 1) return true;
     if(string.length === 2) return string[0] === string[1];
@@ -74,6 +67,14 @@ function isPalindrome(string) {
     }
     return false;
 }
+// console.log("Is cat a palindrome?", isPalindrome('cat'));
+// console.log("Is abba a palindrome", isPalindrome('abba'));
+/////////////////////////////////////////////////////////////////
+// In a given string, replace all spaces with "%20"
+function urlify(str){
+    return str.replace(/\s\b/g, "%20");
+}
 
-console.log("Is cat a palindrome?", isPalindrome('cat'));
-console.log("Is abba a palindrome", isPalindrome('abba'));
+// console.log(urlify('I am your father.'));
+// console.log(urlify(""));
+// console.log(urlify("Happy"));
