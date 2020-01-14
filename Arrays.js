@@ -78,3 +78,31 @@ function urlify(str){
 // console.log(urlify('I am your father.'));
 // console.log(urlify(""));
 // console.log(urlify("Happy"));
+
+//////////////////////////////////////////////////////////////////////
+// Is a given string a permutation of a palindrome? From 1.4 of Cracking the Coding Interview
+function palPerm(string) {
+    if(string.length < 1 ) return false;
+    let counts = {};
+    for (let i = 0; i < string.length; i++){
+        let val = string[i];
+        (counts[val]) ? counts[val]++ : counts[val] = 1;
+    }
+
+    let evenOdd = new Object();
+    evenOdd.even = 0;
+    evenOdd.o = 0;
+    for(key in counts){
+        (counts[key] % 2 === 0) ? (evenOdd.even++ ) : (evenOdd.o ++ );
+    }
+    console.log(evenOdd);
+    return (evenOdd.o > 1) ? false : true;
+}
+
+console.log("empty string, expect false:", palPerm("")); // false
+console.log("a, expect true:", palPerm("a")); // true
+console.log("abcd, expect false:", palPerm("abcd")); // false
+console.log("baba, expect true:", palPerm("baba")); // true
+console.log("bbaaa, expect true:", palPerm("bbaaa")); // true
+console.log("asdff, expect false:", palPerm("asdff")); // false
+console.log("123r123, expect true:", palPerm("123r123")); //true
