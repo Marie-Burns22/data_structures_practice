@@ -107,8 +107,32 @@ function oneAway(str1, str2) {
     return true;
 }
 
-console.log("pale, ple - expect true", oneAway("pale", "ple")); // true
-console.log("pales, pale - expect true", oneAway("pales", "pale")); //true
-console.log("pale, bale - expect true", oneAway("pale", "bale")); //true
-console.log("pale, bake - expect false", oneAway("pale", "bake")); //false
-console.log("paleeee, pale - expect false", oneAway("paleeee", "pale")); //false
+// console.log("pale, ple - expect true", oneAway("pale", "ple")); // true
+// console.log("pales, pale - expect true", oneAway("pales", "pale")); //true
+// console.log("pale, bale - expect true", oneAway("pale", "bale")); //true
+// console.log("pale, bake - expect false", oneAway("pale", "bake")); //false
+// console.log("paleeee, pale - expect false", oneAway("paleeee", "pale")); //false
+///////////////////////////////////////////////////////////////
+//1.6 String Compression page 91. Accept a string and return a string that is each character followed by the count of how many of that character are repeated consequetively
+
+function compression(string) {
+    const counts = {};
+    for (let i = 0; i < string.length; i++) {
+        let val = string[i];
+        if (i === 0) {
+            counts[val] = 1;
+        } else {
+            (val === string[i - 1]) ? counts[val]++ : counts[val] = 1;
+        }
+    }
+    let compressedArray = [];
+    for (key in counts) {
+        compressedArray.push(key);
+        compressedArray.push(counts[key]);
+    }
+    let compressedString = compressedArray.join("")
+    
+    console.log(compressedString)
+}
+
+console.log("Test aabcccccaaa, expect a2b1c5a3", compression("aabcccccaaa"));
