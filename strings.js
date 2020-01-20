@@ -115,24 +115,41 @@ function oneAway(str1, str2) {
 ///////////////////////////////////////////////////////////////
 //1.6 String Compression page 91. Accept a string and return a string that is each character followed by the count of how many of that character are repeated consequetively
 
+
+
 function compression(string) {
     const counts = {};
+    let compressedArray = [];
+
+    const addLetter = (letter) => {
+        compressedArray.push(letter);
+        compressedArray.push(counts[letter]);
+        delete counts[letter];
+    }
+
     for (let i = 0; i < string.length; i++) {
-        let val = string[i];
-        if (i === 0) {
-            counts[val] = 1;
+        let letter = string[i];
+        if (i === 0) { 
+            counts[letter] = 1;
+            console.log("A", letter, counts)
+        } else if (i === string.length -1) {
+            let lastLetter = string[i - 1];
+            (!counts[letter]) ? counts[letter] = 1 : counts[letter]++;
+            if (letter !== lastLetter) addLetter(lastLetter);
+            addLetter(letter);
+            let compressedString = compressedArray.join("")
+            return (string.length === compressedString.length) ? string : compressedString
+        } else if (letter === string[i - 1]) {
+            counts[letter]++ 
+            console.log("C", letter, counts)
         } else {
-            (val === string[i - 1]) ? counts[val]++ : counts[val] = 1;
+            let lastLetter = string[i - 1]
+            counts[letter] = 1;
+            addLetter(lastLetter);
         }
     }
-    let compressedArray = [];
-    for (key in counts) {
-        compressedArray.push(key);
-        compressedArray.push(counts[key]);
-    }
-    let compressedString = compressedArray.join("")
-    
-    console.log(compressedString)
 }
 
 console.log("Test aabcccccaaa, expect a2b1c5a3", compression("aabcccccaaa"));
+console.log("Test abccccca, expect abccccca because same length", compression("abccccca"));
+console.log("Test abcccca, expect a1b1c4a1", compression("abcccca"));
