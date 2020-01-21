@@ -41,3 +41,27 @@ function dominantIndex(nums) {
 // console.log("Input: nums = [3, 1, 6, 0], expect 2:", dominantIndex([3, 1, 6, 0]))
 // console.log("Input: nums = [1, 2, 3, 4], expect -1:", dominantIndex([1, 2, 3, 4]))
 //////////////////////////////////////////////////////////////////////////////
+
+const matrix3 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+const matrix2 = [[1,2], [3, 4]];
+
+function rotateMatrix(matrix) {
+    let rotatedMatrix = [];
+    while(matrix[0].length >= 1) {
+        let newArray = [];
+        matrix.forEach(array => {
+            // console.log("array:", array)
+            let num = array.pop();
+            // console.log("num:", num);
+            newArray.push(num);
+            // console.log("newArray:", newArray)
+        })
+        rotatedMatrix.push(newArray);
+        // console.log("rotatedMatrix:", rotatedMatrix)
+    }
+    return rotatedMatrix
+}
+
+// console.log("Test 3x3, expect [[3, 6, 9], [2, 5, 8], [1, 4, 7]]:", rotateMatrix(matrix3));
+console.log(rotateMatrix(matrix2)); // expected result [[2,4], [1, 3]]
+
