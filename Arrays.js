@@ -63,5 +63,42 @@ function rotateMatrix(matrix) {
 }
 
 // console.log("Test 3x3, expect [[3, 6, 9], [2, 5, 8], [1, 4, 7]]:", rotateMatrix(matrix3));
-console.log(rotateMatrix(matrix2)); // expected result [[2,4], [1, 3]]
+// console.log(rotateMatrix(matrix2)); // expected result [[2,4], [1, 3]]
 
+///////////////////////////////////////////////////////
+// 1.8 Cracking the code. In a matrix of M x N, if there is an element that is equal to zero, set all the elements in its row and column to zero.
+
+function zeroMatrix(matrix) {
+    let columns = {};
+    for (let i = 0; i < matrix.length; i ++) {
+        for(let j = 0; j < matrix[i].length; j++) {
+            if(matrix[i][j] === 0) {
+                matrix[i].push(true);
+                if (!columns[j]) columns[j] = true;
+            }
+        }
+    }
+    matrix.forEach(array => {
+        let lastIdx = array.length-1;
+        if (array[lastIdx] === true) {
+            console.log(array)
+            array.pop();
+            array.forEach(num => {
+                console.log(num)
+                num = 0
+                console.log(num)
+                console.log(array)
+            });
+        }
+        matrix
+    })
+
+    for(const key in columns) {
+        matrix.map(array => {
+            array[key] = 0;
+        })
+    }
+    return matrix;
+}
+
+console.log(zeroMatrix([[1, 2, 3], [0, 1, 2]])) // [[0, 2, 3], [0, 0, 0]] 
