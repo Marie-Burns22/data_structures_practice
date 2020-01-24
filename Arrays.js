@@ -83,9 +83,9 @@ function zeroMatrix(matrix) {
         if (array[lastIdx] === true) {
             console.log(array)
             array.pop();
-            array.forEach(num => {
+            array.forEach((num, index) => {
                 console.log(num)
-                num = 0
+                array[index] = 0
                 console.log(num)
                 console.log(array)
             });
@@ -101,4 +101,5 @@ function zeroMatrix(matrix) {
     return matrix;
 }
 
-console.log(zeroMatrix([[1, 2, 3], [0, 1, 2]])) // [[0, 2, 3], [0, 0, 0]] 
+// console.log("Test 3 x 2:", zeroMatrix([[1, 2, 3], [0, 1, 2]])) // [[0, 2, 3], [0, 0, 0]] 
+// console.log("Test 3 x 4:", zeroMatrix([[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 0, 4]])) // [[1, 0, 1], [2, 0, 2], [3, 0, 3], [0, 0, 0]]
