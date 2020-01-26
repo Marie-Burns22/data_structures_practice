@@ -103,3 +103,21 @@ function zeroMatrix(matrix) {
 
 // console.log("Test 3 x 2:", zeroMatrix([[1, 2, 3], [0, 1, 2]])) // [[0, 2, 3], [0, 0, 0]] 
 // console.log("Test 3 x 4:", zeroMatrix([[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 0, 4]])) // [[1, 0, 1], [2, 0, 2], [3, 0, 3], [0, 0, 0]]
+
+///////////////////////////////////////////////////////////
+// recursive solution for rotateMatrix
+function rotateMatrixRecursive(matrix) {
+    let rotatedMatrix = [];
+    if(matrix[0].length === 0) {
+        return rotatedMatrix;
+    }
+    let newArray = [];
+    matrix.forEach(array => newArray.push(array.pop()))
+    rotatedMatrix.push(newArray);
+    rotatedMatrix = rotatedMatrix.concat(rotateMatrixRecursive(matrix));
+    return rotatedMatrix;
+}
+
+
+console.log("Test 3x3, expect [[3, 6, 9], [2, 5, 8], [1, 4, 7]]:", rotateMatrixRecursive(matrix3));
+console.log(rotateMatrixRecursive(matrix2)); // expected result [[2,4], [1, 3]]
