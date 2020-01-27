@@ -119,5 +119,38 @@ function rotateMatrixRecursive(matrix) {
 }
 
 
-console.log("Test 3x3, expect [[3, 6, 9], [2, 5, 8], [1, 4, 7]]:", rotateMatrixRecursive(matrix3));
-console.log(rotateMatrixRecursive(matrix2)); // expected result [[2,4], [1, 3]]
+// console.log("Test 3x3, expect [[3, 6, 9], [2, 5, 8], [1, 4, 7]]:", rotateMatrixRecursive(matrix3));
+// console.log(rotateMatrixRecursive(matrix2)); // expected result [[2,4], [1, 3]]
+
+//////////////////////////
+// from Leetcode. In put is an array of digits that represent a number. Add one to that number.
+function plusOne(array){
+    let lastIndex = array.length -1
+    let last = array[lastIndex];
+    console.log(lastIndex, last)
+    if(last !== 9){
+        array[lastIndex] = last + 1
+    } else {
+        let carryOne = true
+        let counter = lastIndex
+        while(carryOne){
+            let indexBefore = counter - 1
+            array[counter] = 0;
+            console.log("counter", counter)
+            let digitBefore = array[indexBefore];
+            console.log("digitBefore",digitBefore)
+            if (digitBefore === 9) {
+                digitBefore = 0; 
+                array[indexBefore] = digitBefore;
+            } else {
+                digitBefore++;
+                array[indexBefore] = digitBefore;
+                carryOne = false;
+            }
+        }
+    }
+    return array
+}
+
+console.log(plusOne([1, 2, 9])); // [1,3,0]
+console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
