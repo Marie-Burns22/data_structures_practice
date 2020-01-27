@@ -127,6 +127,10 @@ function rotateMatrixRecursive(matrix) {
 function plusOne(array){
     let lastIndex = array.length -1
     let last = array[lastIndex];
+<<<<<<< HEAD
+=======
+    console.log(lastIndex, last)
+>>>>>>> 2e065a6ac56c60072b1e8bf43b7967e19d57a069
     if(last !== 9){
         array[lastIndex] = last + 1
     } else {
@@ -135,7 +139,13 @@ function plusOne(array){
         while(carryOne){
             let indexBefore = counter - 1
             array[counter] = 0;
+<<<<<<< HEAD
             let digitBefore = array[indexBefore];
+=======
+            console.log("counter", counter)
+            let digitBefore = array[indexBefore];
+            console.log("digitBefore",digitBefore)
+>>>>>>> 2e065a6ac56c60072b1e8bf43b7967e19d57a069
             if (digitBefore === 9) {
                 digitBefore = 0; 
                 array[indexBefore] = digitBefore;
