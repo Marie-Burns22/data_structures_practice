@@ -129,19 +129,22 @@ function plusOne(array){
     let last = array[lastIndex];
     if(last !== 9){
         array[lastIndex] = last + 1
-    } else if (array.length === 1 && array[0] === 9) {
-        array.unshift(1);
-        array[1] = 0;
     } else {
         let carryOne = true
         let counter = lastIndex
         while(carryOne){
+            if (counter === 0) {
+                array[0] = 0;
+                array.unshift(1);
+                return array;
+            }
             let indexBefore = counter - 1
             array[counter] = 0;
             let digitBefore = array[indexBefore];
             if (digitBefore === 9) {
                 digitBefore = 0; 
                 array[indexBefore] = digitBefore;
+                counter--;
             } else {
                 digitBefore++;
                 array[indexBefore] = digitBefore;
@@ -151,6 +154,10 @@ function plusOne(array){
     }
     return array
 }
-console.log(plusOne([9]));
+
+// currently does not pass all tests. example of test not passing is [9, 9].  Looks like the bug is when a digit needs to be added. Maybe put this is the while loop. Have a count to keep track of if all the digits are nine? Then unshift a 1.
+console.log(plusOne([9]));// [1, 0]
 console.log(plusOne([1, 2, 9])); // [1,3,0]
+console.log(plusOne([1, 9, 9, 9])); // [2,0,0,0]
+console.log(plusOne([9, 9, 9])); // [1, 0, 0, 0]
 console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
