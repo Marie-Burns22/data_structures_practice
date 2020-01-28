@@ -156,8 +156,25 @@ function plusOne(array){
 }
 
 // currently does not pass all tests. example of test not passing is [9, 9].  Looks like the bug is when a digit needs to be added. Maybe put this is the while loop. Have a count to keep track of if all the digits are nine? Then unshift a 1.
-console.log(plusOne([9]));// [1, 0]
-console.log(plusOne([1, 2, 9])); // [1,3,0]
-console.log(plusOne([1, 9, 9, 9])); // [2,0,0,0]
-console.log(plusOne([9, 9, 9])); // [1, 0, 0, 0]
-console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
+// console.log(plusOne([9]));// [1, 0]
+// console.log(plusOne([1, 2, 9])); // [1,3,0]
+// console.log(plusOne([1, 9, 9, 9])); // [2,0,0,0]
+// console.log(plusOne([9, 9, 9])); // [1, 0, 0, 0]
+// console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3]));
+//////////////////////////////
+// Matching socks problem. Different color represented by digits, sock drawer represented by array. How many complete pairs?
+
+function sockPairs(n, array){
+    let counts = {};
+    let pairCount = 0
+    array.forEach(digit => {
+        (counts[digit]) ? counts[digit]++ : counts[digit] = 1;
+    })
+
+    for(const key in counts){
+        let pairs = Math.floor(counts[key] / 2)
+        pairCount = pairCount + pairs;
+    }
+    return pairCount
+}
+console.log("Test sockpairs", sockPairs(7, [1, 2, 1, 2, 1, 3, 2])) // 2
