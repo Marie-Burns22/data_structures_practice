@@ -179,3 +179,39 @@ function sockPairs(n, array){
     return pairCount
 }
 // console.log("Test sockpairs", sockPairs(7, [1, 2, 1, 2, 1, 3, 2])) // 2
+
+/////////////////////////
+//From leet code diagonal traverse of a 2d array.
+
+function diagonalTraverse(matrix) {
+    let result = []
+    let m = matrix.length
+    let n = matrix[0].length
+    let row = 0  //starting value
+    let col = 0 //starting value
+    let top = true; //starting value
+    let goingDown = false;
+    let bottom = false; //staring value
+    let goingUp = false;
+
+    // if on top and there is another (col + 1), row stays same and add one to column and change value of top.
+    // if going down and there is another, row + 1 and col - 1, change value of going down when either row or column === 0
+    // if on bottom and there is another (col + 1), row says same and col + 1, change value of bottom.
+    // if going up and there is another, row - 1, and col + 1, change value goingUP when row or col ===0
+   
+    //stop when row === m && col === n
+
+   
+
+    return result
+}
+console.log(diagonalTraverse([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
+console.log(diagonalTraverse([
+    [1, 1, 1, 1],
+    [2, 2, 2, 2],
+    [3, 3, 3, 3]
+])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
