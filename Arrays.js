@@ -185,15 +185,68 @@ function sockPairs(n, array){
 
 function diagonalTraverse(matrix) {
     let result = []
-    let m = matrix.length
-    let n = matrix[0].length
-    let row = 0  //starting value
-    let col = 0 //starting value
+    let mLength = matrix.length
+    let nLength = matrix[0].length
+    let mCounter = 0  //starting value
+    let nCounter = 0 //starting value
     let top = true; //starting value
-    let goingDown = false;
+    let goDown = false;
     let bottom = false; //staring value
-    let goingUp = false;
+    let goUp = false;
 
+    result.push(matrix[mCounter][nCounter]);
+
+    while(result.length < mLength * nLength) {
+        if(top) {
+            nCounter++;
+            result.push(matrix[mCounter][nCounter])
+            top = false;
+            goDown = true;
+        }
+        if(goDown) {
+            console.log("goDown", goDown)
+            if (mCounter < mLength && nCounter > 0) {
+                console.log("a")
+                mCounter++;
+                nCounter--;
+                console.log("n", nCounter)
+                result.push(matrix[mCounter][nCounter])
+            } else if (nCounter < 1) {
+                console.log("b")
+                mCounter++;
+                result.push(matrix[mCounter][nCounter]);
+                goDown = false;
+                goUp = true;
+            } else {
+                console.log("c")
+                nCounter++;
+                result.push(matrix[mCounter][mCounter]);
+                goDown = false;
+                goUp = true;
+            }
+        }
+
+        if(goUp){
+            console.log("goUp", goUp)
+            if(mCounter > 0 && nCounter < nLength -1) {
+                mCounter--;
+                nCounter++;
+                result.push(matrix[mCounter][nCounter])
+            } else if (nCounter === nLength - 1) {
+                mCounter++;
+                result.push(matrix[mCounter][nCounter])
+                goUp = false;
+                goDown = true;
+            } else {
+                console.log("go UP", "m=", mCounter, "n=", nCounter)
+                nCounter++;
+                result.push(matrix[mCounter][nCounter]);
+                goUp = false;
+                goDown = true
+            }
+        }
+        // return result;
+    }
     // if on top and there is another (col + 1), row stays same and add one to column and change value of top.
     // if going down and there is another, row + 1 and col - 1, change value of going down when either row or column === 0
     // if on bottom and there is another (col + 1), row says same and col + 1, change value of bottom.
@@ -210,8 +263,8 @@ console.log(diagonalTraverse([
     [4, 5, 6],
     [7, 8, 9]
 ])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
-console.log(diagonalTraverse([
-    [1, 1, 1, 1],
-    [2, 2, 2, 2],
-    [3, 3, 3, 3]
-])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
+// console.log(diagonalTraverse([
+//     [1, 1, 1, 1],
+//     [2, 2, 2, 2],
+//     [3, 3, 3, 3]
+// ])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
