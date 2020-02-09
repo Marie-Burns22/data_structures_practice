@@ -182,65 +182,75 @@ function sockPairs(n, array){
 
 /////////////////////////
 //From leet code diagonal traverse of a 2d array.
-
 function diagonalTraverse(matrix) {
     let result = []
     let mLength = matrix.length
     let nLength = matrix[0].length
-    let mCounter = 0  //starting value
-    let nCounter = 0 //starting value
+    let resultLength = mLength * nLength;
+    let m = 0  //starting value
+    let n = 0 //starting value
     let top = true; //starting value
     let goDown = false;
     let bottom = false; //staring value
     let goUp = false;
+    console.log({result})
+    result.push(matrix[m][n]);
 
-    result.push(matrix[mCounter][nCounter]);
-
-    while(result.length < mLength * nLength) {
+    while(result.length < resultLength) {
+        let digit;
+        
         if(top) {
-            nCounter++;
-            result.push(matrix[mCounter][nCounter])
+            n++;
+            digit = matrix[m][n]
+            result.push(digit)
+            console.log("top", {digit})
             top = false;
             goDown = true;
         }
         if(goDown) {
-            console.log("goDown", goDown)
-            if (mCounter < mLength && nCounter > 0) {
-                console.log("a")
-                mCounter++;
-                nCounter--;
-                console.log("n", nCounter)
-                result.push(matrix[mCounter][nCounter])
-            } else if (nCounter < 1) {
-                console.log("b")
-                mCounter++;
-                result.push(matrix[mCounter][nCounter]);
+            if (m < mLength - 1  && n > 0) {
+                m++;
+                n--;
+                digit = matrix[m][n]
+                result.push(digit)
+                console.log("aDown",{goDown, m, n, digit})
+            } else if (n < 1) {
+                m++;
+                digit = matrix[m][n]
+                result.push(digit);
+                console.log("bDown",{goDown, m, n, digit})
                 goDown = false;
                 goUp = true;
             } else {
-                console.log("c")
-                nCounter++;
-                result.push(matrix[mCounter][mCounter]);
+                n++;
+                digit = matrix[m][n]
+                result.push(digit);
+                console.log("cDown",{goDown, m, n, digit})
+                if(result.length === resultLength) return result
                 goDown = false;
                 goUp = true;
             }
         }
 
         if(goUp){
-            console.log("goUp", goUp)
-            if(mCounter > 0 && nCounter < nLength -1) {
-                mCounter--;
-                nCounter++;
-                result.push(matrix[mCounter][nCounter])
-            } else if (nCounter === nLength - 1) {
-                mCounter++;
-                result.push(matrix[mCounter][nCounter])
+            if(m > 0 && n < nLength - 1) {
+                m--;
+                n++;
+                digit = matrix[m][n]
+                result.push(digit)
+                console.log("aUp", {goUp, m, n, digit})
+            } else if (n === nLength - 1 && m < mLength - 1) {
+                m++;
+                digit = matrix[m][n]
+                result.push(digit)
+                console.log("bUp", {goUp, m, n, digit})
                 goUp = false;
                 goDown = true;
             } else {
-                console.log("go UP", "m=", mCounter, "n=", nCounter)
-                nCounter++;
-                result.push(matrix[mCounter][nCounter]);
+                n++;
+                digit = matrix[m][n]
+                result.push(digit);
+                console.log("cUp", {goUp, m, n, digit})
                 goUp = false;
                 goDown = true
             }
@@ -253,9 +263,6 @@ function diagonalTraverse(matrix) {
     // if going up and there is another, row - 1, and col + 1, change value goingUP when row or col ===0
    
     //stop when row === m && col === n
-
-   
-
     return result
 }
 // console.log(diagonalTraverse([
@@ -263,11 +270,11 @@ function diagonalTraverse(matrix) {
 //     [4, 5, 6],
 //     [7, 8, 9]
 // ])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
-// console.log(diagonalTraverse([
-//     [1, 1, 1, 1],
-//     [2, 2, 2, 2],
-//     [3, 3, 3, 3]
-// ])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
+console.log(diagonalTraverse([
+    [1, 1, 1, 1],
+    [2, 2, 2, 2],
+    [3, 3, 3, 3]
+])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
 /////////////////////////////////////////////////////////
 
 //function accepts an array and a target average value. Return true if there is a pair of integers that have an average equal to the target value.
@@ -291,5 +298,5 @@ function averagePair(arr, target) {
     return false;
 }
 
-console.log(averagePair([1 , 2 , 3, 4, 5, 6], 5)) // true
-console.log(averagePair([1 , 2 , 3, 4, 5, 6], 11)) // false
+// console.log(averagePair([1 , 2 , 3, 4, 5, 6], 5)) // true
+// console.log(averagePair([1 , 2 , 3, 4, 5, 6], 11)) // false
