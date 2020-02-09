@@ -258,13 +258,38 @@ function diagonalTraverse(matrix) {
 
     return result
 }
-console.log(diagonalTraverse([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
+// console.log(diagonalTraverse([
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+// ])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
 // console.log(diagonalTraverse([
 //     [1, 1, 1, 1],
 //     [2, 2, 2, 2],
 //     [3, 3, 3, 3]
 // ])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
+/////////////////////////////////////////////////////////
+
+//function accepts an array and a target average value. Return true if there is a pair of integers that have an average equal to the target value.
+//The input array is sorted
+
+function averagePair(arr, target) {
+    let start = 0;
+    let end = arr.length - 1;
+    if(start === end) return false;
+
+    while(end > start) {
+        let avg = (arr[start] + arr[end]) / 2;
+        if(avg === target) {
+            return true;
+        } else if (avg > target) {
+            end --;
+        } else {
+            start ++;
+        }
+    }
+    return false;
+}
+
+console.log(averagePair([1 , 2 , 3, 4, 5, 6], 5)) // true
+console.log(averagePair([1 , 2 , 3, 4, 5, 6], 11)) // false
