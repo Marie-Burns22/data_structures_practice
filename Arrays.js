@@ -183,6 +183,8 @@ function sockPairs(n, array){
 /////////////////////////
 //From leet code diagonal traverse of a 2d array.
 function diagonalTraverse(matrix) {
+    if (matrix.length === 0 ) return [];
+    if (matrix.length === 1 ) return matrix[0];
     let result = []
     let mLength = matrix.length
     let nLength = matrix[0].length
@@ -240,16 +242,18 @@ function diagonalTraverse(matrix) {
     }
     return result;
 }
+console.log(diagonalTraverse([]));
+console.log(diagonalTraverse([[2, 3]]));
 // console.log(diagonalTraverse([
 //     [1, 2, 3],
 //     [4, 5, 6],
 //     [7, 8, 9]
 // ])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
-console.log(diagonalTraverse([
-    [1, 1, 1, 1],
-    [2, 2, 2, 2],
-    [3, 3, 3, 3]
-])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
+// console.log(diagonalTraverse([
+//     [1, 1, 1, 1],
+//     [2, 2, 2, 2],
+//     [3, 3, 3, 3]
+// ])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
 /////////////////////////////////////////////////////////
 
 //function accepts an array and a target average value. Return true if there is a pair of integers that have an average equal to the target value.
