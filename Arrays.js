@@ -194,20 +194,32 @@ function diagonalTraverse(matrix) {
     let top = true; //starting value
     let goDown = false;
     let goUp = false;
+    let bottom = false;
     result.push(matrix[m][n]);
-
+    if (nLength === 1) {
+        top = false;
+        goDown = true;
+    }
+    
     while(result.length < resultLength) {
+        if (result.length === resultLength) return result
         if (top) {
             n++;
             result.push(matrix[m][n])
             top = false;
             goDown = true;
         }
+
         if (goDown) {
             if (m < mLength - 1  && n > 0) {
                 m++;
                 n--;
                 result.push(matrix[m][n])
+                if (m === mLength - 1 && n === 0) {
+                    goDown = false;
+                    bottom = true;
+                }
+                if (result.length === resultLength) return result
             } else if (n < 1) {
                 m++;
                 result.push(matrix[m][n]);
@@ -222,7 +234,16 @@ function diagonalTraverse(matrix) {
             }
         }
 
+        if (bottom) {
+            n++;
+            result.push(matrix[m][n]);
+            if (result.length === resultLength) return result
+            bottom = false;
+            goUp = true;
+        }
+        
         if(goUp){
+            if (result.length === resultLength) return result
             if(m > 0 && n < nLength - 1) {
                 m--;
                 n++;
@@ -244,16 +265,18 @@ function diagonalTraverse(matrix) {
 }
 console.log(diagonalTraverse([]));
 console.log(diagonalTraverse([[2, 3]]));
-// console.log(diagonalTraverse([
-//     [1, 2, 3],
-//     [4, 5, 6],
-//     [7, 8, 9]
-// ])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
-// console.log(diagonalTraverse([
-//     [1, 1, 1, 1],
-//     [2, 2, 2, 2],
-//     [3, 3, 3, 3]
-// ])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
+console.log(diagonalTraverse([[1, 2], [3, 4]]))
+console.log(diagonalTraverse([[2], [3]]))
+console.log(diagonalTraverse([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])) // [1, 2, 4, 7, 5, 3, 6, 8, 9]
+console.log(diagonalTraverse([
+    [1, 1, 1, 1],
+    [2, 2, 2, 2],
+    [3, 3, 3, 3]
+])) // [1, 1, 2, 3, 2, 1, 1, 2, 3, 3, 2, 3]  m= 3, n = 4
 /////////////////////////////////////////////////////////
 
 //function accepts an array and a target average value. Return true if there is a pair of integers that have an average equal to the target value.
