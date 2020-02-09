@@ -191,41 +191,29 @@ function diagonalTraverse(matrix) {
     let n = 0 //starting value
     let top = true; //starting value
     let goDown = false;
-    let bottom = false; //staring value
     let goUp = false;
-    console.log({result})
     result.push(matrix[m][n]);
 
     while(result.length < resultLength) {
-        let digit;
-        
-        if(top) {
+        if (top) {
             n++;
-            digit = matrix[m][n]
-            result.push(digit)
-            console.log("top", {digit})
+            result.push(matrix[m][n])
             top = false;
             goDown = true;
         }
-        if(goDown) {
+        if (goDown) {
             if (m < mLength - 1  && n > 0) {
                 m++;
                 n--;
-                digit = matrix[m][n]
-                result.push(digit)
-                console.log("aDown",{goDown, m, n, digit})
+                result.push(matrix[m][n])
             } else if (n < 1) {
                 m++;
-                digit = matrix[m][n]
-                result.push(digit);
-                console.log("bDown",{goDown, m, n, digit})
+                result.push(matrix[m][n]);
                 goDown = false;
                 goUp = true;
             } else {
                 n++;
-                digit = matrix[m][n]
-                result.push(digit);
-                console.log("cDown",{goDown, m, n, digit})
+                result.push(matrix[m][n]);
                 if(result.length === resultLength) return result
                 goDown = false;
                 goUp = true;
@@ -236,34 +224,21 @@ function diagonalTraverse(matrix) {
             if(m > 0 && n < nLength - 1) {
                 m--;
                 n++;
-                digit = matrix[m][n]
-                result.push(digit)
-                console.log("aUp", {goUp, m, n, digit})
+                result.push(matrix[m][n])
             } else if (n === nLength - 1 && m < mLength - 1) {
                 m++;
-                digit = matrix[m][n]
-                result.push(digit)
-                console.log("bUp", {goUp, m, n, digit})
+                result.push(matrix[m][n])
                 goUp = false;
                 goDown = true;
             } else {
                 n++;
-                digit = matrix[m][n]
-                result.push(digit);
-                console.log("cUp", {goUp, m, n, digit})
+                result.push(matrix[m][n]);
                 goUp = false;
                 goDown = true
             }
         }
-        // return result;
     }
-    // if on top and there is another (col + 1), row stays same and add one to column and change value of top.
-    // if going down and there is another, row + 1 and col - 1, change value of going down when either row or column === 0
-    // if on bottom and there is another (col + 1), row says same and col + 1, change value of bottom.
-    // if going up and there is another, row - 1, and col + 1, change value goingUP when row or col ===0
-   
-    //stop when row === m && col === n
-    return result
+    return result;
 }
 // console.log(diagonalTraverse([
 //     [1, 2, 3],
