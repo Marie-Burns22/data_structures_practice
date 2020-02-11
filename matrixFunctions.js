@@ -100,6 +100,9 @@ function diagonalTraverse(matrix) {
 // matrix spiral problem from leetcode
 
 function spiralOrder(matrix) {
+    if(matrix.length === 0) return matrix
+    if(matrix.length === 1) return matrix[0]
+    // if(matrix.length < 2 && matrix[0].length < 2) return matrix
     let result = []
     let resultLength = matrix.length * matrix[0].length
     let currentRow = 0;
@@ -146,17 +149,17 @@ function spiralOrder(matrix) {
             if (currentCol > colStart) {
                 currentCol --;
             } else {
-                goLeft = false;
-                goUp = true;
                 currentRow --;
                 bottomRow --;
+                goLeft = false;
+                goUp = true;
             }
             if (result.length  === resultLength) return result
         }
         
         if(goUp) {
             result.push(matrix[currentRow][currentCol])
-            if ( currentRow < topRow) {
+            if ( currentRow > topRow) {
                 currentRow --;
             } else {
                 goUp = false;
@@ -176,9 +179,14 @@ function spiralOrder(matrix) {
 //     [7, 8, 9]
 // ])) 
 // [1, 2, 3, 6, 9, 8, 7, 4, 5]
-console.log(spiralOrder([
-    [1, 1, 1, 1],
-    [2, 2, 2, 2],
-    [3, 3, 3, 3]
-])) 
-// [1, 1, 1, 1, 2, 3, 3, 3, 3, 2, 2, 2]
+// console.log(spiralOrder([
+//     [1, 1, 1, 1],
+//     [2, 2, 2, 2],
+//     [3, 3, 3, 3]
+// ])) 
+// // [1, 1, 1, 1, 2, 3, 3, 3, 3, 2, 2, 2]
+// console.log(spiralOrder([]))
+// console.log(spiralOrder([[1]]))
+// console.log(spiralOrder([[1], [2]]))
+// console.log(spiralOrder([[2, 3]]))
+console.log(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]))
