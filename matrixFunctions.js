@@ -189,4 +189,32 @@ function spiralOrder(matrix) {
 // console.log(spiralOrder([[1]]))
 // console.log(spiralOrder([[1], [2]]))
 // console.log(spiralOrder([[2, 3]]))
-console.log(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]))
+// console.log(spiralOrder([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]))
+/////////////////////////////////////////////////////////
+
+// Pascal's triangle from Leetcode. 
+
+function pascal(numRows){
+    const result = [[]];
+    let row = 0;
+    let col = 0;
+
+    while( row < numRows) {  
+        if(row === col) {
+            result[row].push(1);
+            row++;
+            col = 0;
+        } else if (col === 0) {
+            result.push([1]);
+            col++;
+        } else {
+            let sum = result[row -1][col -1] + result[row - 1][col];
+            result[row].push(sum);
+            col++
+        }
+    }
+    return result
+}
+
+console.log(pascal(5));
+console.log(pascal(10));
