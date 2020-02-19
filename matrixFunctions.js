@@ -195,6 +195,7 @@ function spiralOrder(matrix) {
 // Pascal's triangle from Leetcode. 
 
 function pascal(numRows){
+    if (numRows === 0) return [];
     const result = [[]];
     let row = 0;
     let col = 0;
@@ -217,4 +218,4 @@ function pascal(numRows){
 }
 
 console.log(pascal(5));
-console.log(pascal(10));
+console.log(pascal(0));
