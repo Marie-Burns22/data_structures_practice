@@ -116,7 +116,6 @@ function oneAway(str1, str2) {
 //1.6 String Compression page 91. Accept a string and return a string that is each character followed by the count of how many of that character are repeated consequetively
 
 
-
 function compression(string) {
     const counts = {};
     let compressedArray = [];
@@ -150,6 +149,57 @@ function compression(string) {
     }
 }
 
-console.log("Test aabcccccaaa, expect a2b1c5a3", compression("aabcccccaaa"));
-console.log("Test abccccca, expect abccccca because same length", compression("abccccca"));
-console.log("Test abcccca, expect a1b1c4a1", compression("abcccca"));
+// console.log("Test aabcccccaaa, expect a2b1c5a3", compression("aabcccccaaa"));
+// console.log("Test abccccca, expect abccccca because same length", compression("abccccca"));
+// console.log("Test abcccca, expect a1b1c4a1", compression("abcccca"));
+///////////////////////////////////////////
+
+// Adding binary strings. Problem from leetcode
+
+function addBinary(a, b){
+    let result = "";
+    let bLength = b.length
+    let aLength = a.length
+    let longest = Math.max(aLength, bLength);
+    let carryOver = 0;
+    let count = 0;
+    let decrement = 1;
+
+    while (count <= longest) {
+        let sum;
+        let aDig = a[aLength - decrement];
+        let bDig = b[bLength - decrement];
+
+        if(!aDig && !bDig) {
+            sum = carryOver
+        } else if (!aDig) {
+            sum = carryOver + parseInt(bDig)
+        } else if (!bDig) {
+            sum = carryOver + parseInt(aDig)
+            console.log({aDig, bDig, sum, result, carryOver, decrement})
+        } else {
+            sum = carryOver + parseInt(aDig) + parseInt(bDig)
+        }   
+        
+        if (sum === 0 || sum === 1){
+            result = sum + result;
+            carryOver = 0
+            console.log({aDig, bDig, sum, result, carryOver, decrement})
+            
+        } else if (sum === 2) {
+            result = "0" + result;
+            carryOver = 1;
+            console.log({aDig, bDig, sum, result, carryOver, decrement})
+        } else {
+            result = "1" + result;
+            carryOver = 1
+            console.log({aDig, bDig, sum, result, carryOver, decrement})
+        }
+        
+        count++;
+        decrement++
+    }
+    return result
+}
+
+console.log(addBinary("110101", "111111"))
