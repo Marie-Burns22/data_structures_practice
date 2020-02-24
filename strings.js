@@ -198,5 +198,41 @@ function addBinary(a, b){
     return result
 }
 
-console.log(addBinary("110101", "111111"))
-console.log(addBinary("0", "0"))
+// console.log(addBinary("110101", "111111"))
+// console.log(addBinary("0", "0"))
+///////////////////////////////
+
+// From leetcode, return the index of the first occurance in haystack, or -1 if needle is not part of haystack. The inputs are each strings
+
+function strStr(haystack, needle){
+    if (!needle || !haystack) return 0
+    let matchIndex = -1 ;
+    let match = false;
+    let needleIndex = 0;
+    let haystackIndex = 0;
+    while(needleIndex < needle.length) {
+        if (haystackIndex === haystack.length - 1) return matchIndex;
+        if (needle[needleIndex] === haystack[haystackIndex]){
+            if (match === false) matchIndex = haystackIndex;
+            match = true;
+            haystackIndex++;
+            needleIndex++
+        } else {
+            needleIndex = 0;
+            if (match === true) {
+                haystackIndex = matchIndex + 1
+                match = false
+                matchIndex = -1;
+            } else {
+                haystackIndex++;
+            }
+        }
+    }
+    return matchIndex
+};
+
+console.log(strStr("hello", 'll')) // should return 2
+console.log(strStr("hello", 'lo')) // should return 3
+console.log(strStr("aaaaa", 'bba')) // should return -1
+console.log(strStr("", 'bba')) // should return 0
+console.log(strStr("aaaaa", '')) // should return 0
