@@ -170,13 +170,13 @@ function addBinary(a, b){
         let aDig = a[aLength - decrement];
         let bDig = b[bLength - decrement];
 
+        if (count === longest && carryOver === 0) return result
         if(!aDig && !bDig) {
             sum = carryOver
         } else if (!aDig) {
             sum = carryOver + parseInt(bDig)
         } else if (!bDig) {
             sum = carryOver + parseInt(aDig)
-            console.log({aDig, bDig, sum, result, carryOver, decrement})
         } else {
             sum = carryOver + parseInt(aDig) + parseInt(bDig)
         }   
@@ -184,16 +184,12 @@ function addBinary(a, b){
         if (sum === 0 || sum === 1){
             result = sum + result;
             carryOver = 0
-            console.log({aDig, bDig, sum, result, carryOver, decrement})
-            
         } else if (sum === 2) {
             result = "0" + result;
             carryOver = 1;
-            console.log({aDig, bDig, sum, result, carryOver, decrement})
         } else {
             result = "1" + result;
             carryOver = 1
-            console.log({aDig, bDig, sum, result, carryOver, decrement})
         }
         
         count++;
@@ -203,3 +199,4 @@ function addBinary(a, b){
 }
 
 console.log(addBinary("110101", "111111"))
+console.log(addBinary("0", "0"))
