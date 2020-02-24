@@ -205,13 +205,14 @@ function addBinary(a, b){
 // From leetcode, return the index of the first occurance in haystack, or -1 if needle is not part of haystack. The inputs are each strings
 
 function strStr(haystack, needle){
-    if (!needle || !haystack) return 0
+    if (!needle) return 0
+    if (needle.length > haystack.length) return -1;
     let matchIndex = -1 ;
     let match = false;
     let needleIndex = 0;
     let haystackIndex = 0;
     while(needleIndex < needle.length) {
-        if (haystackIndex === haystack.length - 1) return matchIndex;
+        if (haystackIndex >= haystack.length) return -1 ;
         if (needle[needleIndex] === haystack[haystackIndex]){
             if (match === false) matchIndex = haystackIndex;
             match = true;
@@ -231,8 +232,11 @@ function strStr(haystack, needle){
     return matchIndex
 };
 
-console.log(strStr("hello", 'll')) // should return 2
-console.log(strStr("hello", 'lo')) // should return 3
-console.log(strStr("aaaaa", 'bba')) // should return -1
-console.log(strStr("", 'bba')) // should return 0
-console.log(strStr("aaaaa", '')) // should return 0
+// console.log(strStr("hello", 'll')) // should return 2
+// console.log(strStr("hello", 'lo')) // should return 3
+// console.log(strStr("aaaaa", 'bba')) // should return -1
+// console.log(strStr("", 'bba')) // should return -1
+// console.log(strStr("aaaaa", '')) // should return 0
+// console.log(strStr("a", 'a')) // should return 0
+// console.log(strStr("aaa", 'aaaa')) // should return -1
+// console.log(strStr("mississippi", "issipi")) //-1
