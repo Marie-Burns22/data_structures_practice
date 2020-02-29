@@ -240,3 +240,34 @@ function strStr(haystack, needle){
 // console.log(strStr("a", 'a')) // should return 0
 // console.log(strStr("aaa", 'aaaa')) // should return -1
 // console.log(strStr("mississippi", "issipi")) //-1
+///////////////////////////////////////////////////
+// From leetcode, return long matching prefix
+
+function longestCommonPrefix(strs){
+    let result = "";
+    if (strs.length < 1) return result
+    let m = 0;
+    let n = 0;
+    let comparator = strs[m][n]
+    let matching = true;
+    while (matching) {
+        if(m === strs.length) {
+            result = result + comparator;
+            m = 0;
+            n++;
+            comparator = strs[m][n]
+        } else if (strs[m][n] === comparator) {
+            m++
+        } else {
+            matching = false;
+        }
+    }
+    return result;
+}
+
+// console.log(longestCommonPrefix(["flower", "flow", "flight"])) // expect output fl
+// console.log(longestCommonPrefix(["flower", "fl", "flight"])) // expect output fl
+// console.log(longestCommonPrefix(["", "fl", "flight"])) // expect output ""
+// console.log(longestCommonPrefix([])) // expect output ""
+console.log(longestCommonPrefix([""])) // expect output ""
+// console.log(longestCommonPrefix(["dog", "racecar", "car"])) // expect output ""
