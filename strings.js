@@ -251,11 +251,16 @@ function longestCommonPrefix(strs){
     let comparator = strs[m][n]
     let matching = true;
     while (matching) {
+        if (strs[m] === "") return result
         if(m === strs.length) {
             result = result + comparator;
             m = 0;
             n++;
-            comparator = strs[m][n]
+            if (strs[m][n]) {
+                comparator = strs[m][n] 
+            } else { 
+                return result
+            } 
         } else if (strs[m][n] === comparator) {
             m++
         } else {
@@ -269,5 +274,6 @@ function longestCommonPrefix(strs){
 // console.log(longestCommonPrefix(["flower", "fl", "flight"])) // expect output fl
 // console.log(longestCommonPrefix(["", "fl", "flight"])) // expect output ""
 // console.log(longestCommonPrefix([])) // expect output ""
-console.log(longestCommonPrefix([""])) // expect output ""
-// console.log(longestCommonPrefix(["dog", "racecar", "car"])) // expect output ""
+// console.log(longestCommonPrefix([""])) // expect output ""
+// console.log(longestCommonPrefix(["a"])) // expect output "a"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])) // expect output ""
