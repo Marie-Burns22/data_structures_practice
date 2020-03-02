@@ -276,4 +276,23 @@ function longestCommonPrefix(strs){
 // console.log(longestCommonPrefix([])) // expect output ""
 // console.log(longestCommonPrefix([""])) // expect output ""
 // console.log(longestCommonPrefix(["a"])) // expect output "a"
-console.log(longestCommonPrefix(["dog", "racecar", "car"])) // expect output ""
+// console.log(longestCommonPrefix(["dog", "racecar", "car"])) // expect output ""
+
+function reverseString(array){
+    let i = 0;
+    let j = array.length - 1
+    while (i < j) {
+        let holder = array[i];
+        array[i] = array[j];
+        array[j] = holder;
+        i++;
+        j--;
+    }
+    return array;
+}
+
+console.log(reverseString(["h", "e", "l", "l", "o"]))
+console.log(reverseString(["H", "a", "n", "n", "a", "h"]))
+console.log(reverseString(["h"]))
+console.log(reverseString([""]))
+console.log(reverseString([]))
