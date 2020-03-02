@@ -206,3 +206,24 @@ function averagePair(arr, target) {
 
 // console.log(averagePair([1 , 2 , 3, 4, 5, 6], 5)) // true
 // console.log(averagePair([1 , 2 , 3, 4, 5, 6], 11)) // false
+
+// //////////////////////////////////////////////////
+// from Leet Code Array Partition 1
+
+function arrayPairSum(nums) {
+    nums.sort((a,b) => a - b);
+
+    let i = 0;
+    let j = 1;
+    let output = 0
+    while(j < nums.length) {
+        output += Math.min(nums[i], nums[j])
+        i += 2;
+        j += 2;
+    }
+    return output
+}
+console.log(arrayPairSum([1, 4, 3, 2]))// expect output of 4
+console.log(arrayPairSum([4, 4, 4, 4]))// expect output of 4
+console.log(arrayPairSum([-1, 4, 0, -10]))// expect output of 4
+console.log(arrayPairSum([-470, 66, -4835, -5623]))// expect output of 4
