@@ -212,7 +212,6 @@ function averagePair(arr, target) {
 
 function arrayPairSum(nums) {
     nums.sort((a,b) => a - b);
-
     let i = 0;
     let j = 1;
     let output = 0
@@ -223,7 +222,28 @@ function arrayPairSum(nums) {
     }
     return output
 }
-console.log(arrayPairSum([1, 4, 3, 2]))// expect output of 4
-console.log(arrayPairSum([4, 4, 4, 4]))// expect output of 4
-console.log(arrayPairSum([-1, 4, 0, -10]))// expect output of 4
-console.log(arrayPairSum([-470, 66, -4835, -5623]))// expect output of 4
+// console.log(arrayPairSum([1, 4, 3, 2]))// expect output of 4
+// console.log(arrayPairSum([4, 4, 4, 4]))// expect output of 4
+// console.log(arrayPairSum([-1, 4, 0, -10]))// expect output of 4
+// console.log(arrayPairSum([-470, 66, -4835, -5623]))// expect output of 4
+
+function twoSum(numbers, target) {
+    let i = 0;
+    let j = numbers.length - 1;
+    let sum;
+    while (i < j) {
+        sum = numbers[i] + numbers[j];
+        if (sum > target) {
+            j--;
+        } else if (sum < target) {
+            i++;
+        } else {
+            i++;
+            j++;
+            return [i, j]
+        }
+    }
+}
+console.log(twoSum([2, 7, 11, 15], 9)) //expect [1,2]
+console.log(twoSum([2, 7], 9)) //expect [1,2]
+console.log(twoSum([-1, 0, 8], 7)) //expect [1,2]
