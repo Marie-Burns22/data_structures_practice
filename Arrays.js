@@ -244,6 +244,21 @@ function twoSum(numbers, target) {
         }
     }
 }
-console.log(twoSum([2, 7, 11, 15], 9)) //expect [1,2]
-console.log(twoSum([2, 7], 9)) //expect [1,2]
-console.log(twoSum([-1, 0, 8], 7)) //expect [1,2]
+// console.log(twoSum([2, 7, 11, 15], 9)) //expect [1,2]
+// console.log(twoSum([2, 7], 9)) //expect [1,2]
+// console.log(twoSum([-1, 0, 8], 7)) //expect [1,2]
+
+function removeElement(nums, val) {
+    let k = 0;
+    for(let i = 0; i < nums.length; i++){
+        if (nums[i] !== val){
+            nums[k] = nums[i];
+            k++
+        }
+    }
+    return k;
+}
+console.log(removeElement([3, 2, 2, 3], 3)) // expect 2
+console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2))// expect 5
+console.log(removeElement([2, 2, 2], 2))// expect 0
+console.log(removeElement([1], 2))// expect 1
