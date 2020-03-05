@@ -279,8 +279,37 @@ function findMaxConsecutiveOnes(nums) {
     return longest
 }
 
-console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1]))
-console.log(findMaxConsecutiveOnes([0]))
-console.log(findMaxConsecutiveOnes([]))
-console.log(findMaxConsecutiveOnes([0, 0]))
-console.log(findMaxConsecutiveOnes([1]))
+// console.log(findMaxConsecutiveOnes([1, 1, 0, 1, 1, 1]))
+// console.log(findMaxConsecutiveOnes([0]))
+// console.log(findMaxConsecutiveOnes([]))
+// console.log(findMaxConsecutiveOnes([0, 0]))
+// console.log(findMaxConsecutiveOnes([1]))
+
+//////////////////////////////////////////////////
+//from Leetcode
+function minSubArrayLen(s, nums){
+    let min = 0
+    let j = i;
+    let sum = 0;
+    let n = nums.length
+    for (let i = 0; i < n; i++){
+        while (sum < s && j < n) {
+            if (nums[j]) sum += nums[j]
+            if (sum < s) {
+                j++;
+            } else {
+                if ( min === 0) {
+                    min = j - i
+                } else {
+                    min = Math.min(min, j - i + 1)
+                }
+            }
+        }
+    }
+    return min
+}
+
+console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3]))
+console.log(minSubArrayLen(7, [0]))
+console.log(minSubArrayLen(7, []))
+console.log(minSubArrayLen(7, [1, 1, 1]))
