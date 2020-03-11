@@ -289,10 +289,10 @@ function findMaxConsecutiveOnes(nums) {
 //from Leetcode
 function minSubArrayLen(s, nums){
     let min = 0
-    let j = i;
     let sum = 0;
     let n = nums.length
     for (let i = 0; i < n; i++){
+        let j = i;
         while (sum < s && j < n) {
             if (nums[j]) sum += nums[j]
             if (sum < s) {
